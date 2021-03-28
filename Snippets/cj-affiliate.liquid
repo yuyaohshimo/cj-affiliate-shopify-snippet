@@ -1,0 +1,40 @@
+<script>
+  (function() {
+    if (Shopify.Checkout.page === 'thank_you') {
+      {%- assign discount_name = "" -%}
+      {%- for discount_application in checkout.cart_level_discount_applications -%}
+      {%- assign discount_name = discount_application.title -%}
+      {%- endfor -%} 
+
+      {%- assign skus = "" -%}
+      {%- for line_item in checkout.line_items -%}
+        {%- capture sku -%}&ITEM{{ forloop.index }}={{ line_item.variant.id }}{% endcapture %}
+        {%- assign skus = skus | append: sku -%}
+      {%- endfor -%}
+
+      {%- assign amounts = "" -%}
+      {%- for line_item in checkout.line_items -%}
+        {%- capture amount -%}&AMT{{ forloop.index }}={{ line_item.original_price / line_item.quantity | money_without_currency }}{% endcapture %}
+        {%- assign amounts = amounts | append: amount -%}
+      {%- endfor -%}
+
+      {%- assign qtys = "" -%}
+      {%- for line_item in checkout.line_items -%}
+        {%- capture qty -%}&QTY{{ forloop.index }}={{ line_item.quantity }}{% endcapture %}
+        {%- assign qtys = qtys | append: qty -%}
+      {%- endfor -%}
+
+        
+      function getCookie(name) {
+        const result = new RegExp('(?:^|; )' + encodeURIComponent(name) + '=([^;]*)').exec(document.cookie);
+        return result ? result[1] : '';
+      }
+
+      const img = document.createElement('IMG');
+      img.src = `https://www.emjcd.com/u?TYPE=YOUR_TYPE&CID=YOUR_CID&OID={{ checkout.order_id }}&DISCOUNT={{ checkout.discounts_amount | money_without_currency }}&CURRENCY=USD&COUPON={{ discount_name }}&CJEVENT=${getCookie('cjevent')}&METHOD=IMG{{ skus }}{{ amounts }}{{ qtys }}`;
+      img.height = 1;
+      img.width = 20;
+      document.body.appendChild(img);
+    }
+  })();
+</script>
