@@ -7,6 +7,9 @@ Custom snippet for Shopify + CJ Affiliate
 
 2. Place the following code before `</body>` tag in `checkout.liquid`.
 
-```liquid
-{%- render 'cj-affiliate' -%}
+```html
+<body>
+  ...
+  {%- render 'cj-affiliate' -%}
+</body>
 ```
