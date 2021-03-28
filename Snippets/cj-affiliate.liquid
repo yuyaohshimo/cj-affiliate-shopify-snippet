@@ -3,7 +3,7 @@
     if (Shopify.Checkout.page === 'thank_you') {
       {%- assign discount_name = "" -%}
       {%- for discount_application in checkout.cart_level_discount_applications -%}
-      {%- assign discount_name = discount_application.title -%}
+        {%- assign discount_name = discount_application.title -%}
       {%- endfor -%} 
 
       {%- assign skus = "" -%}
