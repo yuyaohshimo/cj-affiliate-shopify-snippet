@@ -1,15 +1,27 @@
-# cj-affiliate-shopify-snippet
-Custom snippet for Shopify + CJ Affiliate
+# CJ Affiliate Shopify Integration
 
-## Getting Started
+This repository contains a custom snippet for integrating CJ Affiliate with Shopify.
 
-1. Place the [`cj-affiliate.liquid`](/Snippets/cj-affiliate.liquid) on your snippets folder. You can see the instruction how to edit your theme on Shopify dashboard [here](https://help.shopify.com/en/manual/online-store/themes/theme-code#edit-your-theme-code). Your should replace `YOUR_TYPE` and `YOUR_CID` with yours.
+## Prerequisites
 
-2. Place the following code before `</body>` tag in `checkout.liquid`.
+You should have a valid CJ Affiliate account and know your `YOUR_TYPE` and `YOUR_CID` details.
 
-```html
-<body>
-  ...
-  {%- render 'cj-affiliate' -%}
-</body>
-```
+## Setup Instructions
+
+Follow these steps to integrate CJ Affiliate into your Shopify store:
+
+1. Download the [`cj-affiliate.liquid`](/Snippets/cj-affiliate.liquid) snippet from this repository and place it in your Shopify store's snippets directory. If you're unsure about how to edit your Shopify theme to add this file, refer to the official Shopify guide [here](https://help.shopify.com/en/manual/online-store/themes/theme-code#edit-your-theme-code). 
+
+    Please note that you will need to replace the placeholders `YOUR_TYPE` and `YOUR_CID` within the `cj-affiliate.liquid` file with your own CJ Affiliate details.
+
+2. Next, insert the following code snippet just before the `</body>` tag in your `checkout.liquid` file:
+
+    ```html
+    <body>
+      ...
+      {%- render 'cj-affiliate' -%}
+    </body>
+    ```
+By doing this, you're instructing Shopify to render the CJ Affiliate snippet when the checkout page is loaded.
+
+And voila! You've successfully added CJ Affiliate to your Shopify store. If you encounter any issues during setup, please create an issue in this repository and we will do our best to assist you.
